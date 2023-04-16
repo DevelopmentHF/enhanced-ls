@@ -1,10 +1,18 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -pedantic
+CFLAGS = -Wall -Werror
+SRC = els.c file_checking.c
+OBJ = $(SRC:.c=.o)
+DEPS = file_checking.h
 
 all: els
 
-els: els.c
-	$(CC) $(CFLAGS) -o els els.c
+els: $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c $(DEPS)
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+.PHONY: clean
 
 clean:
-	rm -f els
+	rm -f $(OBJ) els
