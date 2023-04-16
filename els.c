@@ -6,7 +6,7 @@
 
 #include "file_checking.h"
 
-#define MAX_DIRNAME_SIZE (100)
+#define MAX_DIRNAME_SIZE (250)
 
 int
 main(int argc, char** argv) {
