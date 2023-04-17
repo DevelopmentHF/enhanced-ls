@@ -16,7 +16,6 @@
 #define WHT   "\x1B[37m"
 #define RESET "\x1B[0m"
 
-#define MAX_DIRNAME_SIZE (250)
 #define INIT_SIZE (2)
 
 int
@@ -45,12 +44,9 @@ main(int argc, char** argv) {
 
             // Abide by ignore philosophy
             if (ent->d_name[0] != '.') {
-    
-                char str[MAX_DIRNAME_SIZE] = "./";
-                strcat(str, ent->d_name);
 
                 // Check if entry is a directory
-                if (isDir(str)) {
+                if (isDir(ent->d_name)) {
                     // might need to resize array of file name
                     if (num_filestrs == (int)cur_size_filestrs) {
                         cur_size_filestrs *= 2;
