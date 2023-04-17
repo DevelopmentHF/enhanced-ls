@@ -1,18 +1,19 @@
 CC = gcc
-CFLAGS = -Wall -Werror
-SRC = els.c file_checking.c
-OBJ = $(SRC:.c=.o)
-DEPS = file_checking.h
+CFLAGS = -Wall -Wextra -pedantic -g
+
+SRCS = els.c file_checking.c
+OBJS = $(SRCS:.c=.o)
+HEADERS = els.h file_checking.h
+
+.PHONY: all clean
 
 all: els
 
-els: $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+els: $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@
 
-%.o: %.c $(DEPS)
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-.PHONY: clean
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) els
+	rm -f $(OBJS) els
