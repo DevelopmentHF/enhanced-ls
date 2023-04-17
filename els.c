@@ -70,22 +70,17 @@ main(int argc, char** argv) {
     printf(YEL "===DIRECTORIES===\n");
     for (int i=0; i<num_dirstrs; i++) {
         printf(BLU "%s\n" RESET, dirstrs[i]);
+        free(dirstrs[i]);
     }
 
     // Go thru all files and print them
     printf(GRN "\n===FILES===\n");
     for (int i=0; i<num_filestrs; i++) {
         printf(WHT "%s\n" RESET, filestrs[i]);
-    }
-
-    // Free
-    for (int i=0; i<num_dirstrs; i++) {
-        free(dirstrs[i]);
-    }
-    free(dirstrs);
-    for (int i=0; i<num_filestrs; i++) {
         free(filestrs[i]);
     }
+
+    free(dirstrs);
     free(filestrs);
     return 0;
 }
